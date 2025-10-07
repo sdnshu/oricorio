@@ -4,7 +4,7 @@ import { nextCookies } from "better-auth/next-js";
 
 import { schema } from "@/db/schema";
 import { db } from "@/lib/db";
-// import { sendEmail } from "@/utils/send-email";
+import { sendEmail } from "@/utils/send-email";
 
 export const auth = betterAuth({
 
@@ -20,19 +20,19 @@ export const auth = betterAuth({
         requireEmailVerification: true,
 
         sendResetPassword: async ({ user, url, token }, request) => {
-            // await sendEmail({
-            //     to: user.email,
-            //     subject: "Reset your password",
-            //     text: `Click the link to reset your password: ${url}`,
-            // });
+            await sendEmail({
+                to: user.email,
+                subject: "Reset your password",
+                text: `Click the link to reset your password: ${url}`,
+            });
         },
 
         onPasswordReset: async ({ user }, request) => {
-            // await sendEmail({
-            //     to: user.email,
-            //     subject: "Password reset successful",
-            //     text: `Your password has been successfully reset.`,
-            // });
+            await sendEmail({
+                to: user.email,
+                subject: "Password reset successful",
+                text: `Your password has been successfully reset.`,
+            });
         },
 
     },
@@ -45,19 +45,19 @@ export const auth = betterAuth({
         sendOnSignIn: true,
 
         sendVerificationEmail: async ({ user, url, token }, request) => {
-            // await sendEmail({
-            //     to: user.email,
-            //     subject: "Verify your email address",
-            //     text: `Click the link to verify your email: ${url}`,
-            // });
+            await sendEmail({
+                to: user.email,
+                subject: "Verify your email address",
+                text: `Click the link to verify your email: ${url}`,
+            });
         },
 
         onEmailVerification: async (user) => {
-            // await sendEmail({
-            //     to: user.email,
-            //     subject: "Email verified",
-            //     text: `Your email has been successfully verified.`,
-            // });
+            await sendEmail({
+                to: user.email,
+                subject: "Email verified",
+                text: `Your email has been successfully verified.`,
+            });
         }
 
     },
