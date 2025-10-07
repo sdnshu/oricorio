@@ -7,7 +7,7 @@ import { EyeIcon, EyeOffIcon, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { ForgotPasswordButton } from '@/components/buttons/forgot-password'
-// import { SignOnButton } from "@/components/buttons/sign-on"
+import { SignOnButton } from "@/components/buttons/sign-on"
 import { SignUpButton } from "@/components/buttons/sign-up"
 
 import { Button } from "@/components/ui/button"
@@ -68,8 +68,8 @@ const SignInForm = ({ redirect_url }: Props) => {
             <div className="grid gap-6">
 
                 <div className="flex flex-col gap-4">
-                    {/* <SignOnButton provider="GitHub" /> */}
-                    {/* <SignOnButton provider="Google" /> */}
+                    <SignOnButton provider="GitHub" />
+                    <SignOnButton provider="Google" />
                 </div>
 
                 <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">

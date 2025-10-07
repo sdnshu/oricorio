@@ -6,7 +6,7 @@ import { useFormik } from 'formik'
 import { EyeIcon, EyeOffIcon, Loader2 } from 'lucide-react'
 import { toast } from "sonner"
 
-// import { SignOnButton } from '@/components/buttons/sign-on'
+import { SignOnButton } from '@/components/buttons/sign-on'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -72,8 +72,8 @@ const SignUpForm = ({ onSuccess }: Props) => {
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
 
             <div className='grid grid-cols-2 gap-2'>
-                {/* <SignOnButton provider="GitHub" /> */}
-                {/* <SignOnButton provider="Google" /> */}
+                <SignOnButton provider="GitHub" />
+                <SignOnButton provider="Google" />
             </div>
 
             <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
