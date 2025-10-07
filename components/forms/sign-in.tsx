@@ -8,7 +8,7 @@ import { toast } from 'sonner'
 
 // import { ForgotPasswordButton } from '@/components/buttons/forgot-password'
 // import { SignOnButton } from "@/components/buttons/sign-on"
-// import { SignUpButton } from "@/components/buttons/sign-up"
+import { SignUpButton } from "@/components/buttons/sign-up"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -79,7 +79,7 @@ const SignInForm = ({ redirect_url }: Props) => {
                 </div>
 
                 <div className="grid gap-6">
-                    
+
                     <div className="grid gap-3">
                         <Label htmlFor="email">Email</Label>
 
@@ -158,7 +158,7 @@ const SignInForm = ({ redirect_url }: Props) => {
 
                 <div className="text-center text-sm">
                     Don&apos;t have an account?{" "}
-                    {/* <SignUpButton /> */}
+                    <SignUpButton />
                 </div>
 
             </div>
