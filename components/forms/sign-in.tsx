@@ -6,7 +6,7 @@ import { useFormik } from 'formik'
 import { EyeIcon, EyeOffIcon, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 
-// import { ForgotPasswordButton } from '@/components/buttons/forgot-password'
+import { ForgotPasswordButton } from '@/components/buttons/forgot-password'
 // import { SignOnButton } from "@/components/buttons/sign-on"
 import { SignUpButton } from "@/components/buttons/sign-up"
 
@@ -104,7 +104,7 @@ const SignInForm = ({ redirect_url }: Props) => {
 
                         <div className="flex items-center">
                             <Label htmlFor="password">Password</Label>
-                            {/* <ForgotPasswordButton /> */}
+                            <ForgotPasswordButton />
                         </div>
 
                         <div className="relative">
