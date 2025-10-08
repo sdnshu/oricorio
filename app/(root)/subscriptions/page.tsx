@@ -19,6 +19,7 @@ import { subscription, stock } from '@/db/schema';
 
 import { auth } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { SubscriptionCard } from '@/components/cards/subscription';
 
 const Page = async () => {
 
@@ -67,28 +68,18 @@ const Page = async () => {
                 <SubscribeButton />
             </header>
 
-            <section className="space-y-3">
+            <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {userSubscriptions.map((sub) => (
-                    <div
+                    <SubscriptionCard
                         key={sub.subscriptionId}
-                        className="border rounded-md p-4 flex items-center justify-between shadow-sm"
-                    >
-                        <div>
-                            <div className="font-medium text-base">
-                                {sub.stockName} ({sub.stockSymbol})
-                            </div>
-                            <div className="text-sm text-muted-foreground">
-                                Frequency: {sub.frequency}
-                            </div>
-                        </div>
-
-                        {/* Placeholder for action buttons like "Unsubscribe" */}
-                        <div>
-                            <Button variant="ghost" size="sm">
-                                Unsubscribe
-                            </Button>
-                        </div>
-                    </div>
+                        subscription={{
+                            id: sub.subscriptionId,
+                            symbol: sub.stockSymbol,
+                            name: sub.stockName,
+                            interval: sub.frequency,
+                            status: 'playing',
+                        }}
+                    />
                 ))}
             </section>
 
