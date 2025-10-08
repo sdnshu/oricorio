@@ -28,6 +28,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useSession } from "@/lib/auth-client"
 
 export function NavUser({
   user,
@@ -38,6 +39,14 @@ export function NavUser({
     avatar: string
   }
 }) {
+
+  const {
+    data: session,
+    isPending, //loading state
+    error, //error object 
+    refetch //refetch the session
+  } = useSession()
+
   const { isMobile } = useSidebar()
 
   return (
@@ -54,9 +63,11 @@ export function NavUser({
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
+                {/* <span className="truncate font-medium">{user.name}</span> */}
+                <span className="truncate font-medium">{session?.user?.name}</span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
+                  {/* {user.email} */}
+                  {session?.user?.email}
                 </span>
               </div>
               <IconDotsVertical className="ml-auto size-4" />
@@ -75,9 +86,10 @@ export function NavUser({
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
+                  {/* <span className="truncate font-medium">{user.name}</span> */}
+                  <span className="truncate font-medium">{session?.user?.name}</span>
                   <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
+                    {session?.user?.email}
                   </span>
                 </div>
               </div>

@@ -1,4 +1,13 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import {
+    pgTable,
+    text,
+    timestamp,
+    boolean,
+    serial,
+    uuid,
+    integer,
+    unique
+} from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
     id: text("id").primaryKey(),
@@ -59,6 +68,28 @@ export const verification = pgTable("verification", {
         .$onUpdate(() => /* @__PURE__ */ new Date())
         .notNull(),
 });
+
+export const stock = pgTable("stock", {
+    id: serial("id").primaryKey(),
+    uuid: uuid("uuid").defaultRandom().notNull().unique(),
+    symbol: text("symbol").notNull().unique(),
+    name: text("name").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+})
+
+export const subscription = pgTable("subscription", {
+    id: serial("id").primaryKey(),
+    userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+    stockId: integer("stock_id").notNull().references(() => stock.id, { onDelete: "cascade" }),
+    frequency: text("frequency").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+        .defaultNow()
+        .$onUpdate(() => /* @__PURE__ */ new Date())
+        .notNull(),
+}, (table) => [
+    unique("unique_user_stock").on(table.userId, table.stockId),
+]);
 
 export const schema = {
     user,

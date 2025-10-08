@@ -25,7 +25,7 @@ const Layout = ({
             <Sidebar variant="inset" />
             <SidebarInset>
                 <Header />
-                <section>{children}</section>
+                <section className='p-4'>{children}</section>
             </SidebarInset>
         </SidebarProvider>
     )
