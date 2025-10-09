@@ -6,8 +6,11 @@ import {
     serial,
     uuid,
     integer,
-    unique
+    unique,
+    pgEnum
 } from "drizzle-orm/pg-core";
+
+export const subscriptionStatusEnum = pgEnum("subscription_status", ["paused", "playing"]);
 
 export const user = pgTable("user", {
     id: text("id").primaryKey(),
@@ -82,6 +85,8 @@ export const subscription = pgTable("subscription", {
     userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
     stockId: integer("stock_id").notNull().references(() => stock.id, { onDelete: "cascade" }),
     frequency: text("frequency").notNull(),
+    status: subscriptionStatusEnum("status").notNull().default("playing"),
+    nextNotification: timestamp("next_notification"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at")
         .defaultNow()

@@ -52,9 +52,10 @@ const Page = async () => {
                     </EmptyDescription>
                 </EmptyHeader>
                 <EmptyContent>
-                    <Button variant="outline" size="sm">
+                    {/* <Button variant="outline" size="sm">
                         New Subscription
-                    </Button>
+                    </Button> */}
+                <SubscribeButton />
                 </EmptyContent>
             </Empty>
         )

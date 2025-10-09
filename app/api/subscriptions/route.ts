@@ -1,4 +1,6 @@
 import { headers } from "next/headers";
+
+import { CronExpressionParser } from 'cron-parser';
 import { and, eq } from "drizzle-orm";
 
 import {
@@ -8,6 +10,11 @@ import {
 
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
+
+function getNextNotification(frequency: string, fromDate: Date = new Date()): Date {
+    const interval = CronExpressionParser.parse(frequency, { currentDate: fromDate });
+    return interval.next().toDate();
+}
 
 export async function POST(request: Request) {
 
@@ -81,6 +88,7 @@ export async function POST(request: Request) {
             userId: session.user.id,
             stockId,
             frequency,
+            nextNotification: getNextNotification(frequency),
         });
 
         return new Response("Subscription created", { status: 201 });
