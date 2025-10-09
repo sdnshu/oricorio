@@ -37,6 +37,7 @@ const Page = async () => {
             frequency: subscription.frequency,
             stockSymbol: stock.symbol,
             stockName: stock.name,
+            nextNotification: subscription.nextNotification,
         })
         .from(subscription)
         .innerJoin(stock, eq(subscription.stockId, stock.id))
@@ -78,6 +79,7 @@ const Page = async () => {
                             symbol: sub.stockSymbol,
                             name: sub.stockName,
                             interval: sub.frequency,
+                            subsequentNotification: sub.nextNotification,
                             status: 'playing',
                         }}
                     />
